@@ -1,0 +1,14 @@
+# Certificats SSL (ne jamais pousser sur GitHub !)
+certs/
+
+# Fichiers Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Variables d'environnement
+.env
+*.env
+
+# Docker
+.docker/
