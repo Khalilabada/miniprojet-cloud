@@ -4,7 +4,6 @@ services:
 
   db:
     image: postgres:14
-    container_name: postgres_db
     restart: always
     environment:
       POSTGRES_DB: tasks
@@ -22,7 +21,6 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: redis_cache
     restart: always
     command: redis-server --appendonly yes
     volumes:
@@ -37,7 +35,6 @@ services:
 
   app:
     build: ./app
-    container_name: flask_app
     restart: always
     environment:
       DB_HOST: db
@@ -55,7 +52,6 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: nginx_proxy
     restart: always
     ports:
       - "80:80"
@@ -71,7 +67,6 @@ services:
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor:v0.47.0
-    container_name: cadvisor
     restart: always
     privileged: true
     volumes:
@@ -86,7 +81,6 @@ services:
 
   prometheus:
     image: prom/prometheus:latest
-    container_name: prometheus
     restart: always
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
@@ -102,7 +96,6 @@ services:
 
   grafana:
     image: grafana/grafana:latest
-    container_name: grafana
     restart: always
     environment:
       GF_SECURITY_ADMIN_USER: admin
